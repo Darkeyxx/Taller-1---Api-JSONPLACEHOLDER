@@ -51,15 +51,13 @@ async function initApp() {
         const posts = await postsResponse.json();
         const users = await usersResponse.json();
 
-        // =========================================================
-        // AQUÍ VA EL "PASO 2": GUARDAR USUARIOS Y LLENAR EL SELECT
-        // =========================================================
+      
         allUsers = users; // Guardamos los usuarios en la variable global
 
-        // Llenamos el <select> del HTML con los usuarios de la API
+        
         let opcionesHTML = '';
         
-        // Opción extra por si quieres seguir publicando como "Tú"
+       
         opcionesHTML += `<option value="999">Tú (Autor Actual)</option>`;
         
         // Opciones de la API
@@ -68,9 +66,7 @@ async function initApp() {
         ).join('');
         
         newAuthorSelect.innerHTML = opcionesHTML;
-        // =========================================================
-
-        // Enriquecer posts con el objeto autor completo
+        
         allPosts = posts.map(post => {
             const author = users.find(user => user.id === post.userId);
             return {
@@ -166,9 +162,7 @@ window.addEventListener('click', (e) => {
 newPostForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // =========================================================
-    // AQUÍ VA EL "PASO 3": LEER EL AUTOR DEL SELECT Y GUARDARLO
-    // =========================================================
+
     const selectedAuthorId = Number(newAuthorSelect.value);
     const title = newTitleInput.value.trim();
     const body = newBodyInput.value.trim();
@@ -194,7 +188,7 @@ newPostForm.addEventListener('submit', async (e) => {
         
         // Lógica para asignar los datos del autor dependiendo de quién se eligió
         if (selectedAuthorId === 999) {
-            // Si eligió "Tú", le ponemos los datos que pediste (Desconocidos)
+            
             createdPost.author = { 
                 id: 'N/A', 
                 name: 'Tú (Autor Actual)', 
@@ -204,7 +198,7 @@ newPostForm.addEventListener('submit', async (e) => {
                 website: 'Desconocido' 
             };
         } else {
-            // Si eligió a un usuario de la API (ej. Leanne Graham), buscamos sus datos reales
+            
             const realAuthor = allUsers.find(user => user.id === selectedAuthorId);
             createdPost.author = realAuthor;
         }
