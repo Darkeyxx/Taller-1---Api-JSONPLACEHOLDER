@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador de Publicaciones | JSONPlaceholder</title>
+    <link rel="stylesheet" href="/STYLES/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabecera de la Aplicación -->
+    <header class="app-header">
+        <div class="header-container">
+            <h1>📖 Explorador de Publicaciones</h1>
+            <p>Consumiendo y enviando datos a JSONPlaceholder</p>
+            
+            <!-- Acciones de Cabecera (Buscador y Botón Nuevo Post) -->
+            <div class="header-actions">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Buscar publicaciones por título..." 
+                        autocomplete="off"
+                    >
+                </div>
+                <button id="open-modal-btn" class="btn-primary">➕ Nueva Publicación</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="app-main">
+        <div id="loading-spinner" class="spinner-container hidden">
+            <div class="spinner"></div>
+            <p>Cargando publicaciones...</p>
+        </div>
+
+        <div id="error-message" class="error-container hidden">
+            <p>⚠️ Ocurrió un error al cargar los datos. Por favor, intenta nuevamente.</p>
+        </div>
+
+        <section id="posts-container" class="posts-grid"></section>
+    </main>
+
+    <!-- Modal para Crear Nueva Publicación -->
+    <div id="post-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal-btn" class="close-btn">&times;</span>
+            <h2>Crear Nueva Publicación</h2>
+            <form id="new-post-form">
+                <div class="form-group">
+                    <label for="new-title">Título</label>
+                    <input type="text" id="new-title" required placeholder="Ej. Mi primer post con fetch...">
+                </div>
+                <div class="form-group">
+                    <label for="new-body">Contenido</label>
+                    <textarea id="new-body" rows="4" required placeholder="Escribe el contenido de tu publicación aquí..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Publicar</button>
+            </form>
+        </div>
+    </div>
+       
+    <div id="author-modal" class="modal hidden">
+    <div class="modal-content author-modal-content">
+        <button id="close-author-modal-btn" class="close-btn">&times;</button>
+        
+        <div class="author-header">
+            <h2 id="author-modal-name">Nombre del Autor</h2>
+        </div>
+        
+        <div class="author-body">
+            <p><strong>ID de Usuario:</strong> <span id="author-modal-id"></span></p>
+            <p><strong>Username:</strong> <span id="author-modal-username"></span></p>
+            <p><strong>Email:</strong> <span id="author-modal-email"></span></p>
+            <p><strong>Teléfono:</strong> <span id="author-modal-phone"></span></p>
+            <p><strong>Website:</strong> <span id="author-modal-website"></span></p>
+        </div>
+    </div>
+      </div>
+      <form id="new-post-form">
+    <label for="new-author">Selecciona el autor:</label>
+    <select id="new-author" required>
+        <!-- Las opciones se llenarán desde JavaScript -->
+    </select>
+    
+    <input type="text" id="new-title" placeholder="Título de la publicación" required>
+    <textarea id="new-body" placeholder="Escribe el contenido aquí..." required></textarea>
+    <button type="submit">Publicar</button>
+</form>
+
+    <footer class="app-footer">
+        <p>Desarrollado con HTML5, CSS3 y JavaScript DOM API.</p>
+    </footer>
+
+    <script src="/SCRIPTS/app.js"></script>
+</body>
+</html>
